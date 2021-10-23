@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <PropertyGroup>
+    <LangVersion>8.0</LangVersion>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Tests.$(AssemblyName)</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+</Project>

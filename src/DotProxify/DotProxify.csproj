@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BeforePack>$(BeforePack);SetPackProperties</BeforePack>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ReusableTasks" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>Tests.$(AssemblyName)</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\LICENSE.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+  <!-- NuGet related properties. We need to run this as part of the 'PackDependsOn' dependencies
+			to ensure our GitInfo related properties have been calculated correctly. -->
+  <Target Name="SetPackProperties">
+    <!-- DependsOnTargets="SetAssemblyVersion"> -->
+    <PropertyGroup>
+      <Authors>Alan McGovern</Authors>
+      <PackageDescription>Allows proxying TCP connections and UDP dgrams via a SOCKS5 proxy.</PackageDescription>
+      <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+      <PackageProjectUrl>https://github.com/alanmcgovern/dotproxify</PackageProjectUrl>
+      <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+      <PackageVersion>0.0.0.1</PackageVersion>
+      <PackageTags>socks5;proxy;library;c#;csharp;dotnet;.NET</PackageTags>
+
+      <IncludeSource>true</IncludeSource>
+      <IncludeSymbols>true</IncludeSymbols>
+      <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+      <RepositoryType>git</RepositoryType>
+      <RepositoryBranch>$(GitBranch)</RepositoryBranch>
+      <RepositoryCommit>$(GitSha)</RepositoryCommit>
+      <RepositoryUrl>https://github.com/alanmcgovern/dotproxify</RepositoryUrl>
+
+      <Copyright>Alan McGovern</Copyright>
+    </PropertyGroup>
+  </Target>
+</Project>
