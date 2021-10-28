@@ -152,8 +152,13 @@ namespace DotProxify
             port = hostParts.Length == 2 ? int.Parse (hostParts[1]) : 80;
 
             var requestParts = lines[0].Split (' ');
-
             var hostUri = requestParts[1];
+            if (StringComparer.OrdinalIgnoreCase.Compare (requestParts[0], "connect") == 0) {
+                hostParts = hostUri.Split (':');
+                host = hostParts[0];
+                if (hostParts.Length == 2)
+                    port = int.Parse (hostParts[1]);
+            }
             if (hostUri.StartsWith ("http://", StringComparison.Ordinal)) {
                 host = new Uri (hostUri).Host;
                 port = new Uri (hostUri).Port;
